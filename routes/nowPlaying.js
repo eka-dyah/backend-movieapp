@@ -8,8 +8,7 @@ route.route("/").get(async (req, res, next) => {
 	res.redirect("/now-playing/1");
 });
 route.route("/:page").get(async (req, res, next) => {
-	let page = req.params.page;
-	if (!page) page = 1;
+	const page = req.params.page;
     
 	let result;
 	try {

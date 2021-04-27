@@ -9,7 +9,6 @@ route.route("/").get(async (req, res, next) => {
 });
 route.route("/:page").get(async (req, res, next) => {
 	let page = req.params.page;
-	if (!page) page = 1;
     
 	let result;
 	try {

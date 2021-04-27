@@ -1,5 +1,6 @@
 const { default: axios } = require("axios");
 const express = require("express");
+const HttpError = require("../utils/HttpError");
 
 const route = express.Router();
 
