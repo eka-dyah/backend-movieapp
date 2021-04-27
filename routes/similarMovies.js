@@ -1,5 +1,6 @@
 const { default: axios } = require("axios");
 const express = require("express");
+const HttpError = require("../utils/HttpError");
 
 const route = express.Router();
 
@@ -8,7 +9,6 @@ route.route("/:idMovie").get(async (req, res, next) => {
 });
 route.route("/:idMovie/:page").get(async (req, res, next) => {
 	let page = req.params.page;
-	if (!page) page = 1;
 
 	let result;
 	try {
