@@ -1,7 +1,7 @@
 const redirect = (paramValue = "") => {
     return async (req, res, next) => {
-        console.log(req.url);
-        res.redirect(`${req.baseUrl}${req.url ? req.url + '/' : '/'}${paramValue}`);
+        const urlReq = req.url !== '/' ? req.url + '/' : '/';
+        res.redirect(`${req.baseUrl}${urlReq}${paramValue}`);
     }
 }
 
