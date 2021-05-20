@@ -15,6 +15,7 @@ const similarMoviesRoute = require("./routes/similarMovies");
 const recommendationMovieRoute = require("./routes/recommendation");
 const reviewsMovie = require("./routes/reviews");
 const searchMovie = require("./routes/searchMovie");
+const creditsMovie = require("./routes/credits");
 
 app.use(json());
 app.use(logger("dev"));
@@ -38,6 +39,7 @@ app.use("/similar", similarMoviesRoute);
 app.use("/recommendation", recommendationMovieRoute);
 app.use("/reviews", reviewsMovie);
 app.use("/search", searchMovie);
+app.use("/credits", creditsMovie);
 
 app.use((req, res, next) => {
 	const error = new HttpError("Something went wrong", 500);
