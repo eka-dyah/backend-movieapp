@@ -1,23 +1,9 @@
-const { default: axios } = require("axios");
 const express = require("express");
-const HttpError = require("../utils/HttpError");
+const { fetchSearchResult } = require("../utils/fetchData");
 const redirect = require("../utils/redirect");
 const route = express.Router();
 
 route.route("/query=:query").get(redirect(1));
-route.route("/query=:query/:page").get(async (req, res, next) => {
-	const { query, page } = req.params;
-	console.log("query is", query);
-	let result;
-	try {
-		result = await axios.get(
-			`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_API}&language=en-US&page=${page}&include_adult=false&query=${query}`
-		);
-	} catch (error) {
-		return next(new HttpError("An error has occured", 500));
-	}
-
-	res.json(result.data);
-});
+route.route("/query=:query/:page").get(fetchSearchResult());
 
 module.exports = route;
