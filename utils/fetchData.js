@@ -62,8 +62,27 @@ const fetchGenre = () => {
 	};
 };
 
+const fetchPerson = () => {
+	return async (req, res, next) => {
+		const idPerson = req.params.idPerson;
+		const category = req.params.category ? `/${req.params.category}` : "";
+
+		let result;
+		try {
+			result = await axios.get(
+				`https://api.themoviedb.org/3/person/${idPerson}${category}?api_key=${process.env.MOVIEDB_API}&language=en-US`
+			);
+		} catch (error) {
+			return next(new HttpError("An error has occured", 500));
+		}
+
+		res.json(result.data);
+	};
+};
+
 module.exports = {
 	fetchData: fetchData,
 	fetchGenre: fetchGenre,
-	fetchSearchResult: fetchSearchResult
+	fetchSearchResult: fetchSearchResult,
+	fetchPerson: fetchPerson
 };
